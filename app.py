@@ -13,6 +13,7 @@ mydb = mysql.connector.connect(
 )
 
 
+
 mycursor = mydb.cursor()
 
 
@@ -175,4 +176,4 @@ def api_attraction(attractionId):
         })    
 
 
-app.run(port=3000)
+app.run(host="0.0.0.0", port=3000)

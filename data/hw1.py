@@ -7,6 +7,8 @@ with open("data\\taipei-attractions.json", mode="r", encoding='utf-8') as file:
 # 確定抓到資料了
 # print(data)
 # 把資料處理
+
+
 app = Flask(
     __name__, static_folder="public", static_url_path="/")
 
