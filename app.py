@@ -6,8 +6,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="2021",
+    user="debian-sys-maint",
+    password="a6OS5uhB5j7X6cer",
     database="mydatabase",
     buffered=True
 )
@@ -37,35 +37,28 @@ def thankyou():
     return render_template("thankyou.html")
 
 @app.route("/api/attractions")
-def api_attractions():
+# 另外開一個函示去處理，先處理只有Page的情況
+def nextPage():
+    mycursor.execute(f"select * from power")
+    firstResult=mycursor.fetchall()
+    firstResultlong=len(firstResult)//12
+    if len(firstResult)%12>12:
+        firstResultlong+=1
+        api_attractions(firstResultlong)
+        return api_attractions(firstResultlong)
+    else:
+        firstResultlong=0
+        return api_attractions(firstResultlong)
+
+def api_attractions(firstResultlong):
     page=request.args.get("page")
     page=int(page)*12
     # page=str(page)
     print(page)
     keyword=request.args.get("keyword")
-    #nextpage寫在這裡去做判斷處理，思考順序如下總數檢調目前抓下來的資料得到剩下的比數，再去做運算搞出下一頁
-    # def nextpage(page):
-    #     #我前面有將page乘12了
-    #     nextpage=(319-page)
-    #     #有兩種狀況一個是餘數大於12跟小於12
-    #     #第一個是餘數大於12，例如地24頁的資料的id是從289到300
-    #     #剩下的資料比數剩19筆也就是nexpage要表示2頁
-    #     #我放到運算式中(319-page)/12=2.5833333
-    #     #要的就是那個2
-
-    #     #第一種情況是餘數大於12
-    #     if nextpage>12:
-    #         nextpage=nextpage//12
-    #         #這裡的情況是頁數是25的狀況要回傳2
-    #         return nextpage
-    #     #第二種狀況是餘數小餘12，代表沒有下一頁
-    #     else:
-    #         nextpage=None
-    #         return nextpage
-
-
-
     #這裡是只有page存在的時候發生的條件
+    nextPage=firstResultlong
+    print(nextPage)
     if keyword==None:
         #用f字串要加上{}讓他的型態改變
         mycursor.execute(f"SELECT  * FROM power  limit 12 offset {page}")
@@ -94,7 +87,7 @@ def api_attractions():
 
                     # print("迴圈後印出來的",myseclist)
                 
-                return json.dumps({"nextpage":1,"data":myseclist},sort_keys=False)
+                return json.dumps({"nextpage":nextPage,"data":myseclist},sort_keys=False)
             else:
                 myseclists=[]
                 for j in range(len(result)):
@@ -113,7 +106,7 @@ def api_attractions():
 
                     myseclists.append(wants)
 
-                return json.dumps({"nextpage":1,"data":myseclists},sort_keys=False)   
+                return json.dumps({"nextpage":nextPage,"data":myseclists},sort_keys=False)   
         else:
             return  jsonify({
                 "error":"True",
@@ -183,5 +176,3 @@ def api_attraction(attractionId):
 
 
 app.run(port=3000)
-
-
