@@ -39,27 +39,16 @@ def thankyou():
 
 @app.route("/api/attractions")
 # 另外開一個函示去處理，先處理只有Page的情況
-def nextPage():
-    mycursor.execute(f"select * from power")
-    firstResult=mycursor.fetchall()
-    firstResultlong=len(firstResult)//12
-    if len(firstResult)%12>12:
-        firstResultlong+=1
-        api_attractions(firstResultlong)
-        return api_attractions(firstResultlong)
-    else:
-        firstResultlong=0
-        return api_attractions(firstResultlong)
 
-def api_attractions(firstResultlong):
+
+
+def api_attractions():
     page=request.args.get("page")
     page=int(page)*12
     # page=str(page)
     print(page)
     keyword=request.args.get("keyword")
     #這裡是只有page存在的時候發生的條件
-    nextPage=firstResultlong
-    print(nextPage)
     if keyword==None:
         #用f字串要加上{}讓他的型態改變
         mycursor.execute(f"SELECT  * FROM power  limit 12 offset {page}")
@@ -72,23 +61,15 @@ def api_attractions(firstResultlong):
                 myseclist=[]
                 for i in range(12):
                     want={
-                    "id":result[i][0],
-                    "name":result[i][1],
-                    "category":result[i][2],
-                    "description":result[i][3],
-                    "address":result[i][4],
-                    "transport":result[i][5],
-                    "mrt":result[i][6],
-                    "latitude":result[i][7],
-                    "longitude":result[i][8],
-                    "images":result[i][9]
+                    "id":result[i][0],"name":result[i][1],"category":result[i][2],"description":result[i][3],"address":result[i][4],
+                    "transport":result[i][5],"mrt":result[i][6],"latitude":result[i][7],"longitude":result[i][8],"images":result[i][9]
                     }
 
                     myseclist.append(want)
-
+                    nextpage=page//12+1
+                    print(page)
                     # print("迴圈後印出來的",myseclist)
-                
-                return json.dumps({"nextpage":nextPage,"data":myseclist},sort_keys=False)
+                return json.dumps({"nextpage":nextpage,"data":myseclist},sort_keys=False)
             else:
                 myseclists=[]
                 for j in range(len(result)):
@@ -107,7 +88,7 @@ def api_attractions(firstResultlong):
 
                     myseclists.append(wants)
 
-                return json.dumps({"nextpage":nextPage,"data":myseclists},sort_keys=False)   
+                return json.dumps({"nextpage":"null","data":myseclists},sort_keys=False)   
         else:
             return  jsonify({
                 "error":"True",
@@ -116,43 +97,50 @@ def api_attractions(firstResultlong):
            
     #這裡是有page跟keyword的狀況          
     else:
-        mycursor.execute(f"SELECT  * FROM power where name like '%{keyword}%' limit 12 offset {page}")
+        mycursor.execute(f"SELECT  * FROM power where name like '%%{keyword}%%' limit 12 offset {page}")
         results=mycursor.fetchall()
-        print('type(results): ', type(results))
-        print("兩個條件都有的結果",results)
-        if results!=None:
-            mytirlist=[]
-            for i in range(len(results)):
-                want={
-                "id":results[i][0],
-                "name":results[i][1],
-                "category":results[i][2],
-                "description":results[i][3],
-                "address":results[i][4],
-                "transport":results[i][5],
-                "mrt":results[i][6],
-                "latitude":results[i][7],
-                "longitude":results[i][8],
-                "images":results[i][9]
-                }
+        #這裡要做的事是抓出全部的筆數
+        mycursor.execute(f"select count(name) FROM power where name like '%%{keyword}%%'")
+        total=mycursor.fetchall()
+        print(total)
+        total=total[0][0]
+        print(total)
+        mytirlist=[]
+        # nextpage=page//12+1
+        for i in range(len(results)):
+            want={
+                    "id":results[i][0],"name":results[i][1],"category":results[i][2],
+                    "description":results[i][3],"address":results[i][4],"transport":results[i][5],
+                    "mrt":results[i][6],"latitude":results[i][7],"longitude":results[i][8],"images":results[i][9]
+                    }
+            mytirlist.append(want)
+            if total>=page+12:
+                nextpage=page//12+1
+            else:
+                nextpage="null"    
+                                       
+        return json.dumps({"nextpage":nextpage,"data":mytirlist},sort_keys=False)
+        #如果資料筆數共有30筆，第零頁是12第一頁是24第二頁有6筆
+        #第二頁就小於12了，這裡要回傳none    
+       
+            
 
-                mytirlist.append(want)
 
-                # print("第二個迴圈後印出來的",mytirlist)
-                
-            return json.dumps({"nextpage":1,"data":mytirlist},sort_keys=False)
-        else:
-            return  jsonify({
-                "error":"True",
-                "message":"你可能頑皮搞錯指令或是伺服器異常"
-            })  
+
+
+
+
+            # return  jsonify({
+            #         "error":"True",
+            #         "message":"你可能頑皮搞錯指令或是伺服器異常"
+            #         })  
          
 
 
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
     print(attractionId)
-    mycursor.execute("SELECT  * FROM power WHERE id= '%s'"%(attractionId))
+    mycursor.execute("SELECT  FROM power WHERE id= '%s'"%(attractionId))
     user=mycursor.fetchone()
     print(user)
     if user!=None:
@@ -176,4 +164,5 @@ def api_attraction(attractionId):
         })    
 
 
-app.run(host="0.0.0.0", port=3000)
+app.run( host="0.0.0.0",port=3000)
+# host="0.0.0.0",
