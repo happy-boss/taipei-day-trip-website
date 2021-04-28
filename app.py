@@ -140,7 +140,7 @@ def api_attractions():
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
     print(attractionId)
-    mycursor.execute("SELECT  FROM power WHERE id= '%s'"%(attractionId))
+    mycursor.execute("SELECT * FROM power WHERE id='%s'"%(attractionId))
     user=mycursor.fetchone()
     print(user)
     if user!=None:
@@ -164,5 +164,5 @@ def api_attraction(attractionId):
         })    
 
 
-app.run( host="0.0.0.0",port=3000)
+app.run(host="0.0.0.0",port=3000)
 # host="0.0.0.0",
