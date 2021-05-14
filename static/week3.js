@@ -11,8 +11,6 @@ var imgLength;
 
 
 
-
-
 function getId(attractionId) {
   console.log(attractionId);
   // /api/attraction/${attractionId}
