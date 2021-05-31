@@ -19,6 +19,7 @@ h1{
 }
 .rightpart{
 	display: flex;
+	
 }
 
 .schedule{
@@ -28,7 +29,7 @@ h1{
 	color: #666666;
 	flex: none;
 	margin: 20px;
-	margin-right: 10px;;
+	margin-right: 10px;
 }
 .user{
 	display: flex;
@@ -61,6 +62,7 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	/* border: 1px black solid; */
+	z-index: 0;
 }
 
 .relax{
@@ -185,17 +187,24 @@ footer{
 	width: 100%;
 	height: 104px;
 	display: flex;
-	
+	justify-content: center;
 	align-items: center;
-	margin-left: auto;
-	margin-right: auto;
+	/* margin-left: auto;
+	margin-right: auto; */
 }
 
-p{
+.coryrightP{
 	font-size: 16px;
 	color: #FFFFFF;
-	margin-left:37%;
+	/* margin-left:37%; */
 }
+
+
+
+
+
+
+
 
 @media(max-width: 1200px) {
 	/* 裝三百多張的盒子 */

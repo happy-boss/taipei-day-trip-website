@@ -60,7 +60,7 @@ body{
 }
 /* 這裡放兩個箭頭 */
 .leftarrow{
-	background-image: url("../static/btn_leftArrow.png");
+	background-image: url("../css/../btn_leftArrow.png");
 	z-index: 1;
 	background-repeat:no-repeat;
 	width: 36px;
@@ -71,7 +71,7 @@ body{
 
 }
 .rightarrow{
-	background-image: url("btn_rightArrow.png");
+	background-image: url("../btn_rightArrow.png");
 	background-repeat:no-repeat;
 	z-index: 1;
 	width: 36px;
@@ -225,12 +225,18 @@ footer{
 	margin-right: auto;
 }
 
-p{
+.coryrightP{
+	font-size: 16px;
+	color: #FFFFFF;
+	/* margin-left:43%; */
+}
+
+/* attraction的p */
+.coryrightp{
 	font-size: 16px;
 	color: #FFFFFF;
 	margin-left:43%;
 }
-
 @media (max-width:1200px){
 	.imgBox{
 		width: 100%;

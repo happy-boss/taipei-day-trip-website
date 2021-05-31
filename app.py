@@ -1,4 +1,8 @@
+from datetime import date
 from flask import *
+
+from flask import session
+
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -12,9 +16,16 @@ mydb = mysql.connector.connect(
     buffered=True
 )
 
+# mycursor = mydb.cursor(buffered=True)
 
 
-mycursor = mydb.cursor()
+
+
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+# mycursor = mydb.cursor(buffered=True)
 
 
 # Pages
@@ -39,18 +50,18 @@ def thankyou():
 
 @app.route("/api/attractions")
 # 另外開一個函示去處理，先處理只有Page的情況
-
-
-
 def api_attractions():
+    
     page=request.args.get("page")
     page=int(page)*12
     # page=str(page)
-    print(page)
+    print('是你嗎',page)
     keyword=request.args.get("keyword")
     #這裡是只有page存在的時候發生的條件
     if keyword==None:
         #用f字串要加上{}讓他的型態改變
+        mycursor = mydb.cursor(buffered=True)
+
         mycursor.execute(f"SELECT  * FROM power  limit 12 offset {page}")
         result=mycursor.fetchall()
         #抓出來的result存在就讓他跑
@@ -67,7 +78,7 @@ def api_attractions():
 
                     myseclist.append(want)
                     nextpage=page//12+1
-                    print(page)
+                    print('頁碼',page)
                     # print("迴圈後印出來的",myseclist)
                 return json.dumps({"nextpage":nextpage,"data":myseclist},sort_keys=False)
             else:
@@ -87,9 +98,10 @@ def api_attractions():
                         }
 
                     myseclists.append(wants)
-
+                mycursor.close()
                 return json.dumps({"nextpage":"null","data":myseclists},sort_keys=False)   
         else:
+            mycursor.close()
             return  jsonify({
                 "error":"True",
                 "message":"你可能頑皮搞錯指令或是伺服器異常"
@@ -97,14 +109,16 @@ def api_attractions():
            
     #這裡是有page跟keyword的狀況          
     else:
+        mycursor = mydb.cursor(buffered=True)
+
         mycursor.execute(f"SELECT  * FROM power where name like '%%{keyword}%%' limit 12 offset {page}")
         results=mycursor.fetchall()
         #這裡要做的事是抓出全部的筆數
         mycursor.execute(f"select count(name) FROM power where name like '%%{keyword}%%'")
         total=mycursor.fetchall()
-        print(total)
+        print('了解',total)
         total=total[0][0]
-        print(total)
+        print('中',total)
         mytirlist=[]
         # nextpage=page//12+1
         for i in range(len(results)):
@@ -118,31 +132,20 @@ def api_attractions():
                 nextpage=page//12+1
             else:
                 nextpage="null"    
-                                       
+        mycursor.close()                               
         return json.dumps({"nextpage":nextpage,"data":mytirlist},sort_keys=False)
         #如果資料筆數共有30筆，第零頁是12第一頁是24第二頁有6筆
         #第二頁就小於12了，這裡要回傳none    
-       
-            
-
-
-
-
-
-
-            # return  jsonify({
-            #         "error":"True",
-            #         "message":"你可能頑皮搞錯指令或是伺服器異常"
-            #         })  
-         
 
 
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
-    print(attractionId)
+    print('attraction',attractionId)
+    mycursor = mydb.cursor(buffered=True)
+
     mycursor.execute("SELECT * FROM power WHERE id='%s'"%(attractionId))
     user=mycursor.fetchone()
-    print(user)
+    print("你有跑嗎?",user)
     if user!=None:
         mylsit={
             "id":user[0],
@@ -156,13 +159,176 @@ def api_attraction(attractionId):
             "longitude": user[8],
             "images":user[9]
             }
+        mycursor.close()    
         return json.dumps({"data":mylsit},sort_keys=False)
     else:
+        mycursor.close()
         return jsonify({
             "error":"True",
             "message":"你的景點編號輸入錯誤或是伺服器異常"
         })    
 
+
+
+@app.route("/api/user",methods=["POST","GET","PATCH","DELETE"])
+def api_route():
+    # 這裡是註冊
+    if request.method=="POST":
+        req=request.get_json()
+        print(req)
+        print(req["email"])
+        # res=make_response(jsonify({"message":"JSON received"}),200)
+        mycursor = mydb.cursor(buffered=True)
+        mycursor.execute("SELECT * FROM spot WHERE email='%s'"%(req["email"]))
+        check_email=mycursor.fetchone()
+        print(check_email)
+
+        if check_email==None:
+            sql="INSERT INTO spot (name,email,password) VALUES (%s, %s, %s)"
+            val=(req["name"],req["email"],req["password"])
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            return jsonify({"ok":True},200)
+
+        else:
+            return jsonify({"error":True,"message":"註冊失敗"},400)
+        # 這裡是登入
+    elif request.method=="PATCH":
+        signreq=request.get_json()
+        print("想要的結果",signreq)
+        print("有拿到嗎?",signreq["email"])
+        #這裡搞一個新的curor
+        patchmycursor=mydb.cursor(buffered=True)
+
+
+        patchmycursor.execute("SELECT * FROM spot WHERE email='%s'"%(signreq["email"]))
+        check_signemail=patchmycursor.fetchone()
+        print(check_signemail)
+
+        patchmycursor.execute("SELECT * FROM spot WHERE password='%s'"%(signreq["password"]))
+        check_signpassword=patchmycursor.fetchone()
+        print("密碼有正確嗎",check_signpassword)
+        # 要信箱跟密碼正確才能登入成功
+        # 第一種信箱錯誤
+        if check_signemail==None:
+
+            return jsonify({"error":True,"message":"信箱打錯"},400)
+        # 第二種密碼錯了
+        elif check_signpassword==None:
+
+            return jsonify({"error":True,"message":"密碼打錯"},400)
+        # 最後一種 全部打對
+        else:
+            session["email"]=check_signemail[2]
+            
+            print("session有沒有被拿到",session["email"])
+            return jsonify({"ok":True},200)
+
+
+    elif request.method == "GET":
+        # try:
+        email=session.get('email')
+        print("看看有沒有拿到",email)
+        usercursor = mydb.cursor()
+        # buffered=True
+        usercursor.execute("SELECT id,name,email FROM spot where email='%s'"%(email))
+        # mycursor.execute("SELECT id,name,email FROM spot where email='1@1'")
+        myresult=usercursor.fetchone()
+        print("想要的結果",myresult)
+        if myresult!=None:
+            # getcursor.commit()
+            usercursor.close()
+            return jsonify({"data":{
+                    'id' : myresult[0],
+                    'name' : myresult[1],
+                    'email' : myresult[2]
+                        }
+                    })
+        else:
+            
+            usercursor.close()
+            return  jsonify({"data":myresult},200)
+        # except:
+        #     print("get出事了")
+            
+
+        #     return jsonify({"message":"這裡出事了"},500)     
+
+    elif request.method == "DELETE":
+        try:
+            session.clear()
+            # print("有被刪掉嗎?",session["user"])
+            return jsonify({"ok":True})   
+        except:
+            print("delete出事了")
+            return jsonify({"message":"這裡出事了"},500)        
+         
+
+@app.route("/api/booking",methods=["POST","GET","DELETE"])
+def api_booking():
+
+    
+    if request.method=="GET":
+        # 先登入再說
+        if session["email"]:
+            bookcursor = mydb.cursor()
+            session['id']
+            print(session['id'])
+            bookcursor.execute("SELECT id,name,address,images FROM power where id='%s'"%(session['id']))
+            Bookresult=bookcursor.fetchone()
+            print("看有抓到要的景點資訊嗎",Bookresult)
+
+            bookcursor = mydb.cursor()
+            bookcursor.execute("SELECT * FROM book where user='%s'"%(session['user']))
+            
+            bookresult=bookcursor.fetchone()
+            print("想要的結果",bookresult)
+            if bookresult:
+                # bookcursor.close()
+                return json.dumps({"data":{"attraction":{
+                    "id":Bookresult[0],
+                    "name":Bookresult[1],
+                    "address":Bookresult[2],
+                    "image":Bookresult[3].split(',')[0]
+                },
+                "date":bookresult[1],
+                "time":bookresult[2],
+                "price":bookresult[3],
+                "customer":bookresult[4]
+                }
+                },sort_keys=False)
+            else:
+                # bookcursor.close()
+                return jsonify({"message":"這裡出事了"},500)
+        else:
+            return json.dumps({"error": True,"message": "尚未登入系統"}), 403
+
+
+
+    elif request.method=="POST":
+        book=request.get_json()
+        print("post有進來嗎",book)
+        session['user']=book['user']
+        print("使用者你在嘛",session['user'])
+        session['id']=book["attractionId"]
+        mycursor = mydb.cursor()
+        # mycursor.execute("SELECT * FROM book WHERE user='%s'"%(book["user"]))
+        # postbook=mycursor.fetchone()
+        # print(postbook)
+        # attrationId,
+        if book['attractionId'] !=None and book['date']!=None and book['time']!=None and book['price']!=None:
+            sql="INSERT INTO book (attractionId,date,time,price,user) VALUES (%s, %s,%s, %s, %s)"
+            val=(book["attractionId"],book["date"],book["time"],book["price"],book["user"])
+            mycursor.execute(sql, val)
+            mydb.commit()
+            mycursor.close()
+            return jsonify({"ok":True},200)
+
+        else:
+            return jsonify({"error":True,"message":"註冊失敗"},400)
+    elif request.method == "DELETE":
+        return 200              
 
 app.run(port=3000, debug=True)
 # host="0.0.0.0",

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../static/week3.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 	<!--手機概念必須加上這行-->
 
@@ -12,11 +13,55 @@
         <div class="top">
             <h1>台北一日遊</h1>
             <div class="rightpart">
-                <div class="schedule">預定行程</div>
-                <div class="user">登入/註冊</div>
+                    <div class="schedule">預定行程</div>
+                    <div class="user">登入/註冊</div>               
+            </div>
+            <div class="logout">
+                <div class="welcomeUser"></div>
+                <div class="logoutbtn">登出</div>
             </div>
         </div>
     </nav>  
+    <section>
+        <!-- 這裡放登入畫面 -->
+        <div class="signBox">
+            <div class="decorator_bar"></div>
+            <div class="loginBox">            
+                <div class="sign_inText">登入會員帳號</div>
+                <div class="X_mark"></div>
+            </div>    
+            <form > 
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail"  id="signemail" required><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail" id="signpassword"   required><br>
+                <button class="signAccount">登入帳戶</button>
+            </form>
+            <div class="erollbuttonText">還沒有帳號?點此註冊</div>
+            <p id="signok"></p>
+        </div>
+        <div class="erollBox">
+            <div class="decorator_bar"></div>
+            <!-- 這個是白色部分包裹輸入框等等的地方 -->
+            <div class="eroll">
+                <div class="erollText">註冊會員帳號</div>
+                <div class="X_marksec"></div>
+            </div>
+            <form > 
+                <input type="name" placeholder="輸入姓名" name="name" class="inputEmail" id="erollname"  required><br>
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail" id="erollemail"  required><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail"  id="erollpassword"  required><br>
+                <button class="erollAccount">註冊帳戶</button>
+            </form>
+            <div class="textBox">
+                <div class="haveAccount">已經有帳戶了?點此進入</div>
+            </div>
+            <p id="erollok"></p>
+        </div>
+    </section>
+
+
+
+
+    
     <!-- 這是中間含圖片跟訂購資訊的部分 -->
     <!-- 先給一個最外面的箱子 -->
     <div class="spotBox" id="spotBox">
@@ -43,21 +88,21 @@
                     <!-- 這一行是選日期 -->
                     <div class="date">選擇日期:
                         <span class="dateInput">
-                        <input type="date" name="bday">
+                        <input type="date" name="bday" class="choosedate" required>
                         </span>
                     </div>   
                     <form class="selectDate">
-                        <span class="wantDate">選擇期間</span>
+                        <span class="wantDate" >選擇期間</span>
                         <span class="inputDate">
-                            <input type="radio" name="location" value="firstDay" id="firstDay"> 上半天
-                            <input type="radio" name="location" value="secondDay" id="secondDay"> 下半天
+                            <input type="radio" name="time" value="morning" id="firstDay" required checked><label> 上半天</label>
+                            <input type="radio" name="time" value="afternoon" id="secondDay" > 下半天
                         </span>    
                     </form>
                     <div class="expanse">
                         <div class="money">導覽費用:</div>
                         <div id="twothousand">新台幣2000元</div>
                     </div>    
-                    <button>
+                    <button id="bookbutton" type="submit">
                         <div class="buttonText">開始預訂行程</div>
                     </button>
                 </div>    
@@ -77,8 +122,9 @@
     </div>
     <!-- 這是最下面的部分 -->
     <footer>
-        <p>COPYRIGHT © 2021 台北一日遊</p>
+        <p class="coryrightp">COPYRIGHT © 2021 台北一日遊</p>
     </footer>
-    <script src="../static/week3.js"></script>
+    <script src="../static/js/attraction.js"></script>
+    <script src="../static/js/login.js"></script>
 </body>
 </html>

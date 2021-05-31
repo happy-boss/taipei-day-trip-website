@@ -13,6 +13,7 @@ var imgLength;
 
 function getId(attractionId) {
   console.log(attractionId);
+  
   // /api/attraction/${attractionId}
   fetch(`/api/attraction/${attractionId}`)
     .then(function (response) {
@@ -37,7 +38,7 @@ function getId(attractionId) {
       //拿到圖片
       // let difficultImg=data.images;
       // console.log(difficultImg);
-      
+
       imgUrl = data.images.split(",");
       console.log(imgUrl);
 
@@ -114,6 +115,7 @@ function getId(attractionId) {
 
 
     })
+    
 
 }
 
@@ -123,11 +125,11 @@ getId(attractionId);
 var leftslide = document.getElementById("leftslide");
 console.log(leftslide);
 leftslide.addEventListener("click", function () {
-  if (indexPic < imgLength-2) {
+  if (indexPic < imgLength - 2) {
     indexPic++;
   }
-  else{
-    indexPic=0;
+  else {
+    indexPic = 0;
   }
   changeUrl(indexPic);
 }
@@ -138,11 +140,11 @@ var rightslide = document.getElementById("rightslide");
 console.log(rightslide);
 rightslide.addEventListener("click", function () {
   // console.log("嗨");
-  if (indexPic < imgLength-2) {
+  if (indexPic < imgLength - 2) {
     indexPic++;
   }
-  else{
-    indexPic=0;
+  else {
+    indexPic = 0;
   }
   changeUrl(indexPic);
 }
@@ -154,19 +156,23 @@ function changeUrl(indexPic) {
   // console.log(imgUrl);
   // let picimgUrl = ;
   // console.log(picimgUrl);
-   document.querySelector(".Pic").src = imgUrl[indexPic];
+  document.querySelector(".Pic").src = imgUrl[indexPic];
   // img.src = "http://" + picture[indexPic].split("'")[1];
 }
 
-
+var ordertime="morning";
+var ordermoney="新台幣2000元";
 
 //點上半天變2000
 var firstDay = document.querySelector('#firstDay');
 console.log(firstDay);
 firstDay.addEventListener("click", function () {
-  console.log("嗨");
-  document.querySelector('#twothousand').innerHTML = "";
-  document.querySelector('#twothousand').innerHTML = "新台幣2000元"
+  // console.log("嗨");
+  // document.querySelector('#twothousand').innerHTML = "";
+  // document.querySelector('#twothousand').innerHTML = "新台幣2000元"
+  document.querySelector('#twothousand').textContent = "新台幣2000元"
+  ordertime = "morning";
+  ordermoney = "新台幣 2000 元";
 }
 
 )
@@ -174,9 +180,44 @@ firstDay.addEventListener("click", function () {
 var secondDay = document.querySelector('#secondDay');
 console.log(secondDay);
 secondDay.addEventListener("click", function () {
-  console.log("嗨");
-  document.querySelector('#twothousand').innerHTML = "";
-  document.querySelector('#twothousand').innerHTML = "新台幣2500元"
+  // console.log("嗨");
+  // document.querySelector('#twothousand').innerHTML = "";
+  // document.querySelector('#twothousand').innerHTML = "新台幣2500元"
+  document.querySelector('#twothousand').textContent = "新台幣2500元"
+  ordertime = "afternoon";
+  ordermoney = "新台幣 2500 元";
 }
 
 )
+
+window.onload = function eroll() {
+  fetch("/api/user").then(function (response) {
+    return response.json();
+  }).then(function (myJson) {
+    console.log(myJson.data)
+    if (myJson.data != null) {
+      console.log(myJson.data.name);
+      userName = myJson.data.name;
+      document.querySelector(".schedule").style.display = "none";
+      document.querySelector(".user").style.display = "none";
+      document.querySelector(".logout").style.display = "block";
+      document.querySelector(".logout").style.display = "flex";
+      // document.querySelector(".welcomeUser").style.display="block";
+      // document.querySelector(".logoutbtn").style.display="block";
+      document.querySelector(".welcomeUser").textContent = "歡迎您，" + userName;
+    }
+    else {
+      document.querySelector(".schedule").style.display = "block";
+      document.querySelector(".user").style.display = "block";
+    }
+  }).catch((error) => {
+    // 錯誤
+
+  })
+
+}
+
+
+
+
+

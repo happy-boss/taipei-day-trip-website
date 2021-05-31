@@ -1,0 +1,224 @@
+
+.line{
+	max-width: 1200px;
+}
+.deletebutton{
+	background-image: url("../icon_delete.png");
+	background-repeat:no-repeat;
+	width: 30px;
+	height: 30px;
+	margin-left: auto;
+}
+/* 這裡是上面的地方 */
+.booktop{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.booktopflex{
+	display: flex;
+	margin-top: 35px;
+	
+	flex-wrap: wrap;
+	
+}
+
+.booktoptext{
+	margin-left: 20px;
+}
+/* 這裡是您好 */
+.bookhello{
+	color: #666666;
+	margin-top: 46px;
+	font-size: 19px;
+	font-weight: bold;
+}
+.booktitle{
+	color: #448899;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.bookdate{
+	margin-top: 30px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.bookDate{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+
+.booktime{
+	margin-top: 30px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.bookTime{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+
+.bookfee{
+	margin-top: 20px;
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+}
+
+.bookFee{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+.booklocation{
+	margin-top: 20px;
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+}
+
+.bookLocation{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+/* 這裡是中間的地方 */
+.bookcenter{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 44px;
+}
+
+.bookcontact{
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+
+}
+
+.contactnameform{
+	margin-top: 31px;
+}
+
+.booknameinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.contactemailform{
+	margin-top: 30px;
+}
+
+.bookemailinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+.contactphoneform{
+	margin-top: 20px;
+}
+
+.bookphoneinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.contacttext{
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-bottom: 45px;
+}
+
+/* 這裡是下面的地方 */
+.bookbottom{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 44px;
+	
+}
+
+.crad{
+	font-size: 16px;
+	color: #666666;
+	font-weight: bold;
+}
+.cardnumberform{
+	margin-top: 24px;
+}
+.cardnumberinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.expiretimeform{
+	margin-top: 15px;
+}
+
+.expiretimeinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.checkpasswordform{
+	margin-top: 15px;
+}
+
+.checkpasswordinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.bookunder{
+	max-width: 1200px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.bottomflex{
+	margin-left: auto;
+	margin-top: 35px;
+}
+
+.totalfee{
+	color: #666666;
+	font-weight: bold;
+}
+
+.feebutton{
+	background: #448899;
+	width: 173px;
+	height: 36px;
+	margin-top: 35px;
+	margin-bottom: 62px;
+}
+.checkfee{
+	color: #FFFFFF;
+	font-size: 19px;
+}
+
+/* 圖片的設定 */
+.bookPic{
+	height: 406px;
+    z-index: 0;
+}

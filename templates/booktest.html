@@ -2,7 +2,6 @@
 <head></head>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
     <link rel="stylesheet" type="text/css" href="../static/css/book.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <body>
@@ -11,15 +10,14 @@
         <div class="top">
             <h1>台北一日遊</h1>
             <div class="rightpart">
-                    <div class="schedule">預定行程</div>
-                    <div class="user">登入/註冊</div>               
-            </div>
-            <div class="logout">
-                <div class="welcomeUser"></div>
-                <div class="logoutbtn">登出</div>
+                <div class="schedule">預定行程</div>
+                <div class="user">登入/註冊</div>
             </div>
         </div>
-    </nav>  
+        <!-- <hr> -->
+    </nav> 
+    <hr>
+    <!-- 這裡要搞登入登出的東西 -->
     <section>
         <!-- 這裡放登入畫面 -->
         <div class="signBox">
@@ -33,7 +31,7 @@
                 <input type="password" placeholder="輸入密碼" name="password" class="inputEmail" id="signpassword"   required><br>
                 <button class="signAccount">登入帳戶</button>
             </form>
-            <div class="erollbuttonText">還沒有帳號?點此註冊</div>
+            <div class="buttonText">還沒有帳號?點此註冊</div>
             <p id="signok"></p>
         </div>
         <div class="erollBox">
@@ -57,18 +55,17 @@
     </section>
     <!-- 這裡搞一個上面有圖片的部分 -->
     <div class="booktop">
-        <div class="bookhello">您好，<span class="customer"></span>，待預訂的行程如下：</div>
+        <div class="bookhello">您好，<span>宏瑋大哥</span>，待預訂的行程如下：</div>
         <!-- 這裡是圖片跟旁邊的文字 我想用flex -->
         <div class="booktopflex">
             <div class="bookpic">
-                <!-- <img src="../static/welcome.png"> -->
+                <img src="../static/welcome.png">
             </div>
             <div class="booktoptext">
-                <div class="booktitle">台北一日遊：<span id="booktextname"></span></div>
-                <div class="bookdate">日期：<span class="bookDate"></span></div>
-                <div class="booktime">時間：<span class="bookTime"></span></div>
-                <div class="bookfee">費用：<span class="bookFee"></span></div>
-                <div class="booklocation">地點：<span class="bookLocation"></span></div>
+                <div class="booktitle">台北一日遊：<span>平安鐘</span></div>
+                <div class="bookdate">日期：<span class="bookDate">2021-04-23</span></div>
+                <div class="bookfee">費用：<span class="bookFee">新台幣 2000 元</span></div>
+                <div class="booklocation">地點：<span class="bookLocation">臺北市 大安區忠孝東路4段</span></div>
             </div>
             <img  class="deletebutton">
         </div>
@@ -110,12 +107,11 @@
     </div>
     <hr class="line">
     <!-- 這裡放下方總共金額 -->
-    <!-- 這裡放下方總共金額 -->
     <div class="bookunder">
         <div></div>
         <div></div>
         <div class="bottomflex">
-            <div class="totalfee">總價：<span></span></div>
+            <div class="totalfee">總價：<span>新台幣 2000 元</span></div>
             <button class="feebutton">
                 <div class="checkfee">確認訂購並付款</div>
             </button>
@@ -125,8 +121,6 @@
     <!-- 最下面的東西 -->
     <footer class="coryright">     
         <p class="coryrightP">COPYRIGHT © 2021 台北一日遊</p>
-    </footer>
-    <script src="../static/js/login.js"></script>
-    <script src="../static/js/book.js"></script>
+    </footer> 
 </body>
 </html>

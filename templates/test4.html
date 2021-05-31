@@ -2,8 +2,8 @@
 
 <head>
     <title>台北一日遊</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/week4.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 	<!--手機概念必須加上這行-->
 
@@ -15,15 +15,12 @@
         <div class="top">
             <h1>台北一日遊</h1>
             <div class="rightpart">
-                    <div class="schedule">預定行程</div>
-                    <div class="user">登入/註冊</div>               
-            </div>
-            <div class="logout">
-                <div class="welcomeUser"></div>
-                <div class="logoutbtn">登出</div>
+                    <div class="schedule" >預定行程</div>
+                    <div class="user" id="sign_in">登入/註冊</div>               
             </div>
         </div>
     </nav>  
+    <!-- 這裡放談跳視窗 -->
     <section>
         <!-- 這裡放登入畫面 -->
         <div class="signBox">
@@ -33,13 +30,13 @@
                 <div class="X_mark"></div>
             </div>    
             <form > 
-                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail"  id="signemail" required><br>
-                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail" id="signpassword"   required><br>
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail"><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail"><br>
                 <button class="signAccount">登入帳戶</button>
             </form>
-            <div class="erollbuttonText">還沒有帳號?點此註冊</div>
-            <p id="signok"></p>
+            <div class="buttonText">還沒有帳號?點此註冊</div>
         </div>
+        <!-- 這裡放註冊畫面 -->
         <div class="erollBox">
             <div class="decorator_bar"></div>
             <!-- 這個是白色部分包裹輸入框等等的地方 -->
@@ -48,17 +45,19 @@
                 <div class="X_marksec"></div>
             </div>
             <form > 
-                <input type="name" placeholder="輸入姓名" name="name" class="inputEmail" id="erollname"  required><br>
-                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail" id="erollemail"  required><br>
-                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail"  id="erollpassword"  required><br>
-                <button class="erollAccount">註冊帳戶</button>
+                <input type="email" placeholder="輸入姓名" name="name" class="inputEmail"><br>
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail"><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail"><br>
+                <button class="signAccount">登入帳戶</button>
             </form>
             <div class="textBox">
                 <div class="haveAccount">已經有帳戶了?點此進入</div>
             </div>
-            <p id="erollok"></p>
         </div>
     </section>
+
+
+
     <!-- ... 第二個div放享受一日休閒 ... -->
     <div class="loge">
         <div class="logomax1200">
@@ -82,12 +81,12 @@
 
     </div>
     <footer>
-        <p class="coryrightP">COPYRIGHT © 2021 台北一日遊</p>
+        <p>COPYRIGHT © 2021 台北一日遊</p>
     </footer>
     
-    <script src="../static/js/index.js"></script>
-    <script src="../static/js/attraction.js"></script>
-    <script src="../static/js/login.js"></script>
+    <script src="../static/week2.js"></script>
+    <script src="../static/week3.js"></script>
+    <script src="../static/week4.js"></script>
 </body>
 
 </html>

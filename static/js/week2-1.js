@@ -12,15 +12,7 @@ function getData(currentPage, keyword) {
     console.log(keyword);
     if (keyword !== null) {
         console.log(currentPage,keyword);
-        // if(keyword!=null&){}
-        // req.open("get","/api/attractions?page=" + currentPage+"&keyword=" +keyword)
         req.open("get", `/api/attractions?page=${currentPage}&keyword=${keyword}`)
-        //感覺就是缺了甚麼
-        if(req.open("get", `/api/attractions?page=${currentPage}&keyword=${keyword}`)===null){
-            document.getElementById("bigbox").innerHTML = "";
-            document.getElementById("bigbox").innerHTML="你不要給我亂打";
-        }
-        
         
     }
 
@@ -28,10 +20,6 @@ function getData(currentPage, keyword) {
     else {
         req.open("get", "/api/attractions?page=" + currentPage)
     };
-    //+ "&keyword=" + keyword
-    // "/api/attractions?page=" + currentPage+"&keyword="+keyword
-
-    //else的地方
     req.onload = function () {
 
         var data = JSON.parse(this.responseText);
