@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title></title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/index.css"> -->
     <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
@@ -11,7 +12,7 @@
     <!-- 這是最上面的部分 -->
     <nav>
         <div class="top">
-            <h1>台北一日遊</h1>
+            <h1 class="taipeitrip">台北一日遊</h1>
             <div class="rightpart">
                     <div class="schedule">預定行程</div>
                     <div class="user">登入/註冊</div>               
@@ -88,7 +89,7 @@
                     <!-- 這一行是選日期 -->
                     <div class="date">選擇日期:
                         <span class="dateInput">
-                        <input type="date" name="bday" class="choosedate" required>
+                        <input type="date" name="bday" class="choosedate" id="choosedate">
                         </span>
                     </div>   
                     <form class="selectDate">
@@ -124,6 +125,7 @@
     <footer>
         <p class="coryrightp">COPYRIGHT © 2021 台北一日遊</p>
     </footer>
+    
     <script src="../static/js/attraction.js"></script>
     <script src="../static/js/login.js"></script>
 </body>

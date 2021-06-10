@@ -1,4 +1,6 @@
+
 // 左邊點擊出現小視窗
+
 var schedule = document.querySelector(".schedule");
 console.log(schedule);
 schedule.addEventListener('click', function () {
@@ -89,7 +91,7 @@ erollAccount.addEventListener("click", (event) => {
             document.getElementById("erollemail").value = "";
             document.getElementById("erollpassword").value = "";
             document.getElementById("erollok").style.display = "block";
-            document.getElementById("erollok").textContent = "你註冊失敗，你個爛的"
+            document.getElementById("erollok").textContent = "註冊失敗"
         }
     })
 
@@ -123,17 +125,14 @@ signAccount.addEventListener("click", (signinevent) => {
         console.log(signinJson);
         console.log(signinJson[0].ok)
         if (signinJson[0].ok == true) {
-            //   document.getElementById("signemail").value="";
-            //   document.getElementById("signpassword").value="";
-            //   document.getElementById("signok").textContent="恭喜你，登入成功"
-            // window.location.reload()
+            
             document.querySelector(".signBox").style.display = "none";
             eroll()
         }
         else {
             document.getElementById("signemail").value = "";
             document.getElementById("signpassword").value = "";
-            document.getElementById("signok").textContent = "你個爛的，帳密亂打"
+            document.getElementById("signok").textContent = "請輸入正確的帳號密碼"
         }
     }
     )
@@ -146,7 +145,7 @@ signAccount.addEventListener("click", (signinevent) => {
 
 var userName;
 
-
+//登入的地方
 function eroll() {
     fetch("/api/user").then(function (response) {
         return response.json();
@@ -159,11 +158,9 @@ function eroll() {
             document.querySelector(".user").style.display = "none";
             document.querySelector(".logout").style.display = "block";
             document.querySelector(".logout").style.display = "flex";
-            // document.querySelector(".welcomeUser").style.display="block";
-            // document.querySelector(".logoutbtn").style.display="block";
             document.querySelector(".welcomeUser").textContent = "歡迎您，" + userName;
 
-            gobooking()
+            // gobooking()
         }
         else {
             document.querySelector(".schedule").style.display = "block";
@@ -175,6 +172,8 @@ function eroll() {
     })
 
 }
+
+// eroll()
 
 
 
@@ -249,8 +248,11 @@ bookbutton.addEventListener("click", function gobooking() {
 
 //做測試
 function book(attractionId) {
-    let orderdate = document.querySelector('.choosedate').value;
-    // window.location.href="/booking";
+    let orderdate = document.getElementById('choosedate').value;
+    if (orderdate==""){
+        alert("請選擇日期");
+        return;
+      }
     let orderdata = {
         "attractionId": attractionId,
         "date": orderdate,
@@ -279,4 +281,5 @@ function book(attractionId) {
     })
 
 }
+
 

@@ -11,6 +11,17 @@ var imgLength;
 
 
 
+//點擊上面回首頁
+var goindexbutton=document.querySelector(".taipeitrip")
+
+goindexbutton.addEventListener("click",()=>{
+  location.href="/"
+}
+
+)
+
+
+
 function getId(attractionId) {
   console.log(attractionId);
   
@@ -113,7 +124,8 @@ function getId(attractionId) {
       mrtName.appendChild(document.createTextNode(Mrtname));
       article.appendChild(mrtName);
 
-
+      eroll()
+      
     })
     
 
@@ -160,19 +172,17 @@ function changeUrl(indexPic) {
   // img.src = "http://" + picture[indexPic].split("'")[1];
 }
 
-var ordertime="morning";
-var ordermoney="新台幣2000元";
+var ordertime="早上 9 點到下午 4 點" ;
+var ordermoney=2000;
 
 //點上半天變2000
 var firstDay = document.querySelector('#firstDay');
 console.log(firstDay);
 firstDay.addEventListener("click", function () {
-  // console.log("嗨");
-  // document.querySelector('#twothousand').innerHTML = "";
-  // document.querySelector('#twothousand').innerHTML = "新台幣2000元"
+ 
   document.querySelector('#twothousand').textContent = "新台幣2000元"
-  ordertime = "morning";
-  ordermoney = "新台幣 2000 元";
+  ordertime = "早上 9 點到下午 4 點";
+  ordermoney = 2000
 }
 
 )
@@ -180,44 +190,15 @@ firstDay.addEventListener("click", function () {
 var secondDay = document.querySelector('#secondDay');
 console.log(secondDay);
 secondDay.addEventListener("click", function () {
-  // console.log("嗨");
-  // document.querySelector('#twothousand').innerHTML = "";
-  // document.querySelector('#twothousand').innerHTML = "新台幣2500元"
+  
   document.querySelector('#twothousand').textContent = "新台幣2500元"
-  ordertime = "afternoon";
-  ordermoney = "新台幣 2500 元";
+  ordertime = "下午 2 點到晚上 9 點";
+  ordermoney = 2500
 }
 
 )
-
-window.onload = function eroll() {
-  fetch("/api/user").then(function (response) {
-    return response.json();
-  }).then(function (myJson) {
-    console.log(myJson.data)
-    if (myJson.data != null) {
-      console.log(myJson.data.name);
-      userName = myJson.data.name;
-      document.querySelector(".schedule").style.display = "none";
-      document.querySelector(".user").style.display = "none";
-      document.querySelector(".logout").style.display = "block";
-      document.querySelector(".logout").style.display = "flex";
-      // document.querySelector(".welcomeUser").style.display="block";
-      // document.querySelector(".logoutbtn").style.display="block";
-      document.querySelector(".welcomeUser").textContent = "歡迎您，" + userName;
-    }
-    else {
-      document.querySelector(".schedule").style.display = "block";
-      document.querySelector(".user").style.display = "block";
-    }
-  }).catch((error) => {
-    // 錯誤
-
-  })
-
-}
-
-
-
-
+// 抓登入狀態
+window.addEventListener("load", function() {
+  eroll()
+});
 

@@ -1,11 +1,7 @@
-from datetime import datetime
+from datetime import date
 from flask import *
 
 from flask import session
-import time
-import requests
-
-# import requests
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
@@ -55,8 +51,8 @@ def thankyou():
 @app.route("/api/attractions")
 # 另外開一個函示去處理，先處理只有Page的情況
 def api_attractions():
-    # mycursor = mydb.cursor()
-    mycursor = mydb.cursor(buffered=True)
+    mycursor = mydb.cursor()
+    # mycursor = mydb.cursor(buffered=True)
     
     page=request.args.get("page")
     page=int(page)*12
@@ -149,7 +145,7 @@ def api_attractions():
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
     print('attraction',attractionId)
-    mycursor = mydb.cursor(buffered=True)
+    mycursor = mydb.cursor()
     # 放在這裡
     # mydb = mysql.connector.connect()
     # mycursor = mydb.cursor()
@@ -178,8 +174,7 @@ def api_attraction(attractionId):
 @app.route("/api/user",methods=["POST","GET","PATCH","DELETE"])
 def api_route():
     mycursor = mydb.cursor(buffered=True)
-    # mycursor = mydb.cursor()
-    
+    # 
     # 這裡是註冊
     if request.method=="POST":
         req=request.get_json()
@@ -319,8 +314,11 @@ def api_booking():
         print("使用者你在嘛",session['user'])
         session['id']=book["attractionId"]
         mycursor = mydb.cursor()
-        
-        if book['attractionId'] !=None and book['date']!=None:
+        # mycursor.execute("SELECT * FROM book WHERE user='%s'"%(book["user"]))
+        # postbook=mycursor.fetchone()
+        # print(postbook)
+        # attrationId,
+        if book['attractionId'] !=None and book['date']!=None and book['time']!=None and book['price']!=None:
             sql="INSERT INTO book (attractionId,date,time,price,user) VALUES (%s, %s,%s, %s, %s)"
             val=(book["attractionId"],book["date"],book["time"],book["price"],book["user"])
             mycursor.execute(sql, val)
@@ -328,8 +326,8 @@ def api_booking():
             mycursor.close()
             return jsonify({"ok":True},200)
 
-        # else:
-        #     return jsonify({"error":True,"message":"註冊失敗"},400)
+        else:
+            return jsonify({"error":True,"message":"註冊失敗"},400)
     elif request.method == "DELETE":
         if session["email"]:
             session.pop('user',None)
@@ -337,13 +335,11 @@ def api_booking():
 
             return jsonify({"ok":True})              
 
+app.run(port=3000, debug=True)
+# host="0.0.0.0",
 
 
-# 第六周的api
-@app.route("/api/orders", methods=["POST"])
-def api_orders():
-    #先確認有沒有登入
-    ordersdata=request.get_json()
+ordersdata=request.get_json()
     print("post有進來嗎",ordersdata)
     #prime把它拿出來看看
     prime=ordersdata['prime']
@@ -359,7 +355,7 @@ def api_orders():
     contactname=ordersdata['order']['contact']['name']
     contactemail=ordersdata['order']['contact']['email']
     contactphone=ordersdata['order']['contact']['phone']
-    print("contactname",contactname)
+    #先確認有沒有登入
     if session["email"]!=None:
         
         # 建立交易編號 tid
@@ -372,71 +368,23 @@ def api_orders():
         url = 'https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime'
         headers={
             'Content-type': 'application/json',
-             "x-api-key":"partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1",
-             
-             }
-        data={
+             "x-api-key":"partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1"}
+        ordersdata={
               'prime':prime,
               "partner_key":"partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1",
               "merchant_id": "112112himar_TAISHIN",
               "details":"TapPay Test",
-              "amount":price,
+              "amount":2500,
               "cardholder": {
                 "phone_number": contactphone,
                 "name": contactname,
-                "email": contactemail,      
+                "email": contactemail      
                 },
         }
 
         # "merchant_id": "112112himar_TAISHIN"
-        triprequest = requests.post(url,json=data, headers=headers)
-        # data=json.dumps(data)
-        # json=data
-        print(triprequest)
-        tripresponse = json.loads(triprequest.text)
-        getstatus = tripresponse['status']
+        request = requests.post(url,data=ordersdata, headers=headers)
+        print(request)
+        response = json.loads(request.text)
+        getstatus = response['status']
         print(getstatus)
-        getmsg=tripresponse['msg']
-        if getstatus==0:
-            mycursor = mydb.cursor(buffered=True)
-            sql="INSERT INTO orders (ordersnumber,ordersprice,ordersid,ordersname,ordersaddress,ordersimage,ordersdate,orderstime,ordersusername,ordersemail,ordersphone) VALUES (%s, %s,%s, %s, %s,%s,%s, %s, %s,%s,%s)"
-            val=(tid,price,tripid,tripname,tripaddress,tripimage,tripdate,triptime,contactname,contactemail,contactphone)
-            mycursor.execute(sql, val)
-            mydb.commit()
-            mycursor.close()    
-            return json.dumps({
-                            "data": {
-                                "number": tid,
-                                "payment": {
-                                    "status": 0,
-                                    "message": "付款成功"
-                                }
-                            }
-                        })
-
-        else:
-            return json.dumps({
-                            "data": {
-                                "number": tid,
-                                "payment": {
-                                    "status": getstatus,
-                                    "message": getmsg
-                                }
-                            }
-                        })
-    #沒登入的狀況
-    elif session['email']==None:
-        return{
-                "error": True,
-                "message": "麻煩登入系統"
-            }
-
-@app.route("/api/order/<orderNumber>")
-def api_order(orderNumber):
-    
-        return 200
-
-
-
-app.run(port=3000, debug=True)
-# host="0.0.0.0",

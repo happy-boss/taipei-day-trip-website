@@ -107,6 +107,7 @@ body{
 	background: #E8E8E8;
 	margin-top: 20px;
 	max-width: 600px;
+	width: 550px;
 	display: flex;
 	flex-grow: 1;
 	
@@ -245,6 +246,13 @@ footer{
 
 @media (max-width: 600px) {
 	.imgBox{
-		display: none;
+		/* display: none; */
+		width: 100%;
+	}
+	.grayBox{
+		
+		width: 340px;
+		
+		
 	}
 }

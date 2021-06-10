@@ -222,3 +222,65 @@
 	height: 406px;
     z-index: 0;
 }
+
+/* 中間的線 */
+.linecenter{
+	max-width: 1200px;
+}
+
+/* 最下面的水平線 */
+.linebottom{
+	max-width: 1200px;
+}
+
+
+.coryrighttwo{
+	background: #757575;
+	width: 100%;
+	height: 865px;
+	display:flex;
+	justify-content: center;
+	display: none;
+	
+}
+
+.contentPbox{
+	
+	margin-top: 45px;
+}
+
+.coryrightPtwo{
+	margin-left: 37%;
+	margin-top: 45px;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+
+/* 沒有預定行程的文字 */
+.noordertext{
+	margin-top: 35px;
+	display: none;
+}
+
+
+/* 這裡是下方信用卡資訊 */
+.tpfield {
+	height: 40px;
+	width: 300px;
+	border: 1px solid gray;
+	margin: 5px 0;
+	padding: 5px;
+}
+
+.payflex{
+	display: flex;
+	margin-top: 20px;
+}
+/* 為了讓您可以對 TapPay Fields 的 focus state 進行 style, 我們會在 field focus 的時候，把 tappay field container 加上 tappay-field-focus 這個 class，您可以對此 class 撰寫 css */
+.tappay-field-focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}

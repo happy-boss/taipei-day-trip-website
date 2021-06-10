@@ -19,3 +19,62 @@ fetch("/api/attraction/92")
     console.log(pictureUrl+"\n");
     }
   });
+
+
+
+
+
+  //這裡要刪除行程
+// var deletebutton=document.querySelector(".deletebutton");
+// console.log(deletebutton)
+
+// deletebutton.addEventListener("click",()=>{
+//   console.log('刪除')
+//   src="/api/booking"
+//   fetch(src,{
+//     method: 'DELETE',
+//     headers: new Headers({
+//         'Content-Type': 'application/json',
+        
+
+//     })
+//   }).then(function (response) {
+//     return response.json();
+// }).then(function (deleteJson){
+//   console.log(deleteJson)
+//   bookcontent()
+// }
+// )
+    
+// }
+// )
+
+
+// window.onload = eroll()
+// window.onload = function eroll() {
+// // function eroll() {
+//   fetch("/api/user").then(function (response) {
+//     return response.json();
+//   }).then(function (myJson) {
+//     console.log(myJson.data)
+//     if (myJson.data != null) {
+//       console.log(myJson.data.name);
+//       userName = myJson.data.name;
+//       document.querySelector(".schedule").style.display = "none";
+//       document.querySelector(".user").style.display = "none";
+//       document.querySelector(".logout").style.display = "block";
+//       document.querySelector(".logout").style.display = "flex";
+//       // document.querySelector(".welcomeUser").style.display="block";
+//       // document.querySelector(".logoutbtn").style.display="block";
+//       document.querySelector(".welcomeUser").textContent = "歡迎您，" + userName;
+//     }
+//     else {
+//       document.querySelector(".schedule").style.display = "block";
+//       document.querySelector(".user").style.display = "block";
+//     }
+//   }).catch((error) => {
+//     // 錯誤
+
+//   })
+
+// }

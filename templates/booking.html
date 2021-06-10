@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<head></head>
+<head>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
     <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
     <link rel="stylesheet" type="text/css" href="../static/css/book.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+</head>    
 <body>
     <!-- 最上面的東西 -->
     <nav>
         <div class="top">
-            <h1>台北一日遊</h1>
+            <h1 class="taipeitrip">台北一日遊</h1>
             <div class="rightpart">
                     <div class="schedule">預定行程</div>
                     <div class="user">登入/註冊</div>               
@@ -19,7 +20,8 @@
                 <div class="logoutbtn">登出</div>
             </div>
         </div>
-    </nav>  
+    </nav>
+    <hr>  
     <section>
         <!-- 這裡放登入畫面 -->
         <div class="signBox">
@@ -72,6 +74,7 @@
             </div>
             <img  class="deletebutton">
         </div>
+        <p class="noordertext">目前沒有預定的行程</p>
     </div>
     <hr class="line">
     <!-- 這裡是中間文字的部分 -->
@@ -91,42 +94,55 @@
         </form>
         <div class="contacttext">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
     </div>
-    <hr class="line">
+    <hr class="linecenter">
     <!-- 這裡是下方的部分 -->
     <div class="bookbottom">
         <div class="crad">信用卡付款資訊</div>
-        <form class="cardnumberform">
-            <span>卡片號碼：</span>
-            <input name="species" type="text"  placeholder="**** **** **** ****" class="cardnumberinput">
-        </form>
-        <form class="expiretimeform">
-            <span>過期時間：</span>
-            <input name="species" type="text" class="expiretimeinput">
-        </form>
-        <form class="checkpasswordform">
-            <span>驗證密碼：</span>
-            <input name="species" type="text" class="checkpasswordinput">
-        </form>
+        <div class="payflex">
+            <span>卡片號碼：</span><div class="tpfield" id="card-number"></div>
+        </div>
+        <div class="payflex">
+            <span>過期時間：</span><div class="tpfield" id="card-expiration-date"></div>
+        </div>
+        <div class="payflex">
+            <span>驗證密碼：</span><div class="tpfield" id="card-ccv"></div>    
+        </div>
     </div>
-    <hr class="line">
+    <hr class="linebottom">
     <!-- 這裡放下方總共金額 -->
     <!-- 這裡放下方總共金額 -->
     <div class="bookunder">
         <div></div>
         <div></div>
-        <div class="bottomflex">
-            <div class="totalfee">總價：<span></span></div>
-            <button class="feebutton">
+        <div class="bottomflex" id="cardview-container">
+            <div class="totalfee">總價：<span class="spotbookfee"></span></div>
+            <button class="feebutton" id="submit-button">
                 <div class="checkfee">確認訂購並付款</div>
             </button>
-        </div>    
+            <p class="errorpay"></p>
+        </div>
+        
     </div>
 
     <!-- 最下面的東西 -->
     <footer class="coryright">     
         <p class="coryrightP">COPYRIGHT © 2021 台北一日遊</p>
     </footer>
+    <footer class="coryrighttwo">
+        <div class="contentPbox"></div>    
+        <p class="coryrightPtwo">COPYRIGHT © 2021 台北一日遊</p>
+        
+    </footer> 
+    <!-- 這裡做tappay的實驗
+    <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script> -->
+    <!-- js的順序很重要 要知道哪個頁面呼叫api的順序!!不然會壞掉 -->
     <script src="../static/js/login.js"></script>
     <script src="../static/js/book.js"></script>
+    <!-- 這裡做tappay的實驗 -->
+    <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script>
+    <script src="../static/js/pay.js"></script>
+
+   
+    
 </body>
 </html>

@@ -48,7 +48,10 @@ body{
  .loge{
 	/* display: flex; */
 	height: 320px;
+	/* background: linear-gradient(135deg, #737a7c 0%, #66AABB 100%);
+	background: #448899; */
 	background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+
 	
 	/* justify-content: center; */
 	/* margin-left: auto;
@@ -89,11 +92,19 @@ body{
 	top: 242px;
 	display: flex;
 }
-button{
+
+.searchKeyword{
+	width: 60px;
+	height: 52px;
+	background: #448899;
+
+
+}
+/* button{
 	width: 23px;
 	height: 23px;
 	
-}
+} */
 .inputBox{
 	width: 400px;
 	height: 46px;
@@ -103,13 +114,13 @@ button{
 
 
 
-button{
+/* button{
 	width: 60px;
-	height: 52px;
+	height: 52px; */
 	/* position: absolute;
 	top: 242px;
 	left:768px; */
-}
+/* } */
 .search{
 	/* background-image:url('./static/search.png'); */
 	width: 100%;
@@ -129,7 +140,7 @@ button{
 	justify-content: space-around;
 	max-width: 1200px;
 	flex-wrap:wrap;
-	border:1px black solid;
+	/* border:1px black solid; */
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 55px;
@@ -211,23 +222,20 @@ footer{
 	.box{
 		width: 45%;
 	}
-	/* 這個是放文字跟中正紀念堂的盒子 */
-	/* 真的不懂為何要加這個 */
-	 /* .logomax1200{
-		width: 45%; 
-		position: relative;
-		width: auto;
-	}  */
-	/* 中正紀念堂的照片 */
-	/* .centerPicture{
-
-		position: absolute;
-		left:540px;
-	};  */
+	/* 不要加;絕對不要!! */
 	.centerPicture{
 		left: 34%;
+		z-index: 1;
 	}
 	
+	.text{
+		z-index: 2;
+	}
+
+	.searchBox{
+		z-index: 2;
+	}
+
 	
 	footer{
 		width: auto;
@@ -248,5 +256,10 @@ footer{
 		z-index: -1;
 	}
 	
+	/* 搜尋地方我想把中正紀念堂蓋掉 */
+	.text{
+		z-index: 0;
+	}
+
 }	
 
