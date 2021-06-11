@@ -42,9 +42,6 @@ fetch("/api/user").then(function (response) {
 
 function bookcontent() {
   //這裡抓booking的事情
-
-  
-
   src = "/api/booking",
     fetch(src).then(function (response) {
       return response.json();

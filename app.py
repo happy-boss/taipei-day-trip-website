@@ -5,8 +5,6 @@ from flask import session
 import time
 import requests
 
-# import requests
-
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -20,7 +18,7 @@ mydb = mysql.connector.connect(
     buffered=True
 )
 
-mycursor = mydb.cursor(buffered=True)
+# mycursor = mydb.cursor(buffered=True)
 
 
 
@@ -177,15 +175,15 @@ def api_attraction(attractionId):
 
 @app.route("/api/user",methods=["POST","GET","PATCH","DELETE"])
 def api_route():
-    mycursor = mydb.cursor(buffered=True)
-    # mycursor = mydb.cursor()
+    # mycursor = mydb.cursor(buffered=True)
+    mycursor = mydb.cursor()
     
     # 這裡是註冊
     if request.method=="POST":
         req=request.get_json()
         print(req)
         print(req["email"])
-        # res=make_response(jsonify({"message":"JSON received"}),200)
+       
         
         mycursor.execute("SELECT * FROM spot WHERE email='%s'"%(req["email"]))
         check_email=mycursor.fetchone()
@@ -238,14 +236,14 @@ def api_route():
         # try:
         email=session.get('email')
         print("看看有沒有拿到",email)
-        # usercursor = mydb.cursor(buffered=True)
+        usercursor = mydb.cursor(buffered=True)
         # buffered=True
-        mycursor.execute("SELECT id,name,email FROM spot where email='%s'"%(email))
-        myresult=mycursor.fetchone()
+        usercursor.execute("SELECT id,name,email FROM spot where email='%s'"%(email))
+        myresult=usercursor.fetchone()
         print("想要的結果",myresult)
         if myresult!=None:
             
-            mycursor.close()
+            usercursor.close()
             return jsonify({"data":{
                     'id' : myresult[0],
                     'name' : myresult[1],
@@ -325,7 +323,7 @@ def api_booking():
             val=(book["attractionId"],book["date"],book["time"],book["price"],book["user"])
             mycursor.execute(sql, val)
             mydb.commit()
-            mycursor.close()
+            # mycursor.close()
             return jsonify({"ok":True},200)
 
         # else:
@@ -364,8 +362,11 @@ def api_orders():
         
         # 建立交易編號 tid
         date = time.time()
-        tid = str(date) + 'Uid' + str(session["email"])
-        print('印tid給我瞧瞧',tid)
+        # tid = str(date) + 'Uid' + str(session["email"])
+        tid = str(date) 
+        Tid=tid.split('.')[0]
+
+        print('印Tid給我瞧瞧',Tid)
         order_params={'MerchantTradeNo': datetime.now().strftime("NO%Y%m%d%H%M%S")}
         print("試試看有沒有印出orderp",order_params)
         # 準備請求 URL
@@ -400,13 +401,13 @@ def api_orders():
         if getstatus==0:
             mycursor = mydb.cursor(buffered=True)
             sql="INSERT INTO orders (ordersnumber,ordersprice,ordersid,ordersname,ordersaddress,ordersimage,ordersdate,orderstime,ordersusername,ordersemail,ordersphone) VALUES (%s, %s,%s, %s, %s,%s,%s, %s, %s,%s,%s)"
-            val=(tid,price,tripid,tripname,tripaddress,tripimage,tripdate,triptime,contactname,contactemail,contactphone)
+            val=(Tid,price,tripid,tripname,tripaddress,tripimage,tripdate,triptime,contactname,contactemail,contactphone)
             mycursor.execute(sql, val)
             mydb.commit()
-            mycursor.close()    
+                
             return json.dumps({
                             "data": {
-                                "number": tid,
+                                "number": Tid,
                                 "payment": {
                                     "status": 0,
                                     "message": "付款成功"
@@ -417,7 +418,7 @@ def api_orders():
         else:
             return json.dumps({
                             "data": {
-                                "number": tid,
+                                "number": Tid,
                                 "payment": {
                                     "status": getstatus,
                                     "message": getmsg
@@ -433,9 +434,43 @@ def api_orders():
 
 @app.route("/api/order/<orderNumber>")
 def api_order(orderNumber):
+    print("有印出訂單嗎?",orderNumber)
+    if session['email']==None:
+            return jsonify({"error":True, "message":"未登入系統"}),403
+    if orderNumber:        
+        print("第六周",session['email'])
+        ordercursor = mydb.cursor(buffered=True)
+        ordercursor.execute("SELECT * FROM orders where ordersnumber='%s'"%(orderNumber))
+        orderData=ordercursor.fetchone()
+        print("第六周資料進來了嗎",orderData)
+        
+        return jsonify({"data":{
+            "number":orderData[0],
+            "price":orderData[1],
+            "trip":{
+                "attraction":{
+                    "id":orderData[2],
+                    "name":orderData[3],
+                    "address":orderData[4],
+                    "image":orderData[5]
+                },
+                "date":orderData[6],
+                "time":orderData[7],
+            },"contact":{
+                "name":orderData[8],
+                "email":orderData[9],
+                "phone":orderData[10]
+            },
+            "status":1
+        }
+        
+        })
+    else:
+        return jsonify({
+        "error": True,
+        "message": "系統出現問題"
+        })    
     
-        return 200
-
 
 
 app.run(port=3000, debug=True)

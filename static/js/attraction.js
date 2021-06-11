@@ -124,7 +124,7 @@ function getId(attractionId) {
       mrtName.appendChild(document.createTextNode(Mrtname));
       article.appendChild(mrtName);
 
-      eroll()
+      // eroll()
       
     })
     

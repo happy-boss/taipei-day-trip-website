@@ -388,3 +388,32 @@ ordersdata=request.get_json()
         response = json.loads(request.text)
         getstatus = response['status']
         print(getstatus)
+
+
+# header = {
+    #     "content-type": "application/json",
+    #     "x-api-key": "partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1"
+    # }
+
+    # body = {
+    #     "partner_key": "partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1"
+    # }
+
+    # x = requests.post("https://sandbox.tappaysdk.com/tpc/transaction/query",
+    #                   data=json.dumps(body), headers=header)
+    # res = json.loads(x.text)
+    # print("res有印出來嗎",res)
+
+    header = {
+            "content-type": "application/json",
+            "x-api-key": "partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1"
+        }
+
+        body = {
+            "partner_key": "partner_aPfrgwTXnpRlaEopHMe1uTSEvjV2S9t9sbURhgs6JjIJklRc8LaeeYZ1"
+        }
+
+        x = requests.post("https://sandbox.tappaysdk.com/tpc/transaction/query",
+                        data=json.dumps(body), headers=header)
+        res = json.loads(x.text)
+        print("res有印出來嗎",res)
