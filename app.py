@@ -12,8 +12,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="2021",
+    user="debian-sys-maint",
+    password="a6OS5uhB5j7X6cer",
     database="mydatabase",
     buffered=True
 )
@@ -473,5 +473,5 @@ def api_order(orderNumber):
     
 
 
-app.run(port=3000, debug=True)
+app.run(host="0.0.0.0",port=3000, debug=True)
 # host="0.0.0.0",
