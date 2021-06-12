@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/index.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<!--手機概念必須加上這行-->
+
+</head>
+<body>
+    <!-- 這是最上面的部分 -->
+    <nav>
+        <div class="top">
+            <h1 class="taipeitrip">台北一日遊</h1>
+            <div class="rightpart">
+                    <div class="schedule">預定行程</div>
+                    <div class="user">登入/註冊</div>               
+            </div>
+            <div class="logout">
+                <div class="welcomeUser"></div>
+                <div class="logoutbtn">登出</div>
+            </div>
+        </div>
+    </nav>  
+    <section>
+        <!-- 這裡放登入畫面 -->
+        <div class="signBox">
+            <div class="decorator_bar"></div>
+            <div class="loginBox">            
+                <div class="sign_inText">登入會員帳號</div>
+                <div class="X_mark"></div>
+            </div>    
+            <form > 
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail"  id="signemail" required><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail" id="signpassword"   required><br>
+                <button class="signAccount">登入帳戶</button>
+            </form>
+            <div class="erollbuttonText">還沒有帳號?點此註冊</div>
+            <p id="signok"></p>
+        </div>
+        <div class="erollBox">
+            <div class="decorator_bar"></div>
+            <!-- 這個是白色部分包裹輸入框等等的地方 -->
+            <div class="eroll">
+                <div class="erollText">註冊會員帳號</div>
+                <div class="X_marksec"></div>
+            </div>
+            <form > 
+                <input type="name" placeholder="輸入姓名" name="name" class="inputEmail" id="erollname"  required><br>
+                <input type="email" placeholder="輸入電子信箱" name="email" class="inputEmail" id="erollemail"  required><br>
+                <input type="password" placeholder="輸入密碼" name="password" class="inputEmail"  id="erollpassword"  required><br>
+                <button class="erollAccount">註冊帳戶</button>
+            </form>
+            <div class="textBox">
+                <div class="haveAccount">已經有帳戶了?點此進入</div>
+            </div>
+            <p id="erollok"></p>
+        </div>
+    </section>
+
+
+
+
+    
+    <!-- 這是中間含圖片跟訂購資訊的部分 -->
+    <!-- 先給一個最外面的箱子 -->
+    <div class="spotBox" id="spotBox">
+        <div id="imgBox" class="imgBox">
+            <!-- <img class="Pic"> -->
+            <!-- 這理想放兩個箭頭 -->
+            <div class="leftarrow" id="leftslide"></div>  
+            <div class="rightarrow" id="rightslide"></div>  
+        </div>
+        
+        <!-- 這裡放左邊的文字 -->
+        <div class="spotNews" id="spotNews">
+            <div id="textBox">
+                <div class="spotName"></div>
+                <!-- 平安鐘 -->
+                <div class="spotDescribe"></div>
+                <!-- 公共藝術 at 忠孝復興 -->
+            </div>   
+            <!-- 灰色背景的區塊 -->
+             <div class="grayBox">
+                <div class="borderBox">
+                    <div class="buySchedue">訂購導覽行程</div>
+                    <div class="describe">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                    <!-- 這一行是選日期 -->
+                    <div class="date">選擇日期:
+                        <span class="dateInput">
+                        <input type="date" name="bday" class="choosedate" id="choosedate">
+                        </span>
+                    </div>   
+                    <form class="selectDate">
+                        <span class="wantDate" >選擇期間</span>
+                        <span class="inputDate">
+                            <input type="radio" name="time" value="morning" id="firstDay" required checked><label> 上半天</label>
+                            <input type="radio" name="time" value="afternoon" id="secondDay" > 下半天
+                        </span>    
+                    </form>
+                    <div class="expanse">
+                        <div class="money">導覽費用:</div>
+                        <div id="twothousand">新台幣2000元</div>
+                    </div>    
+                    <button id="bookbutton" type="submit">
+                        <div class="buttonText">開始預訂行程</div>
+                    </button>
+                </div>    
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 這是景點內容的部分 -->
+
+    <div class="article" id="article"> 
+        <!-- <div class="content">平安鐘祈求大家的平安，這是為了紀念921地震週年的設計，在喧鬧的廣場上每個小時鳴鐘，保佑平安，祈禱臺灣不會再發生這樣的天災。雙手合十加上108個黃色的琉璃乳丁，隨著緩緩流下的水，在底下的一個小噴泉噴出。雙手合十的意義，一個是祈福，一個是包容，教我們要包容這樣的改變，撫平這樣的傷口。下面的水緩緩流出，代表著人的生命力是不斷地延續下去。緩緩地鐘聲，卻帶來心中的寧靜。 這個平安鐘是由建築師姚仁喜與琉璃創作家王俠軍共同設計，長6公尺、寬5公尺，以鑄銅製成，由法鼓山文教基金會全額出資。平安鐘點綴都市景觀，不時提醒大家，面對刻骨銘心的災難痛苦，更應該有謙卑的一顆心。</div>
+        <div class="addressTitle">景點地址：</div>
+        <div class="address">臺北市 大安區忠孝東路4段</div>
+        <div class="transportation">交通方式：</div>
+        <div class="mrtName">捷運站名：忠孝復興站4號出口1.公車：204、212、212直、232、232副、262、262(區間)、278、299、521、605、605(副)、605(新台五線)、667、903、忠孝新幹線至頂好市場站 2.車位：太平洋崇光百貨地下停車場或市民大道附近地下停車場</div> -->
+    </div>
+    <!-- 這是最下面的部分 -->
+    <footer>
+        <p class="coryrightp">COPYRIGHT © 2021 台北一日遊</p>
+    </footer>
+    
+    <script src="../static/js/attraction.js"></script>
+    <script src="../static/js/login.js"></script>
+</body>
+</html>

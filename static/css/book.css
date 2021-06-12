@@ -1,0 +1,286 @@
+
+.line{
+	max-width: 1200px;
+}
+.deletebutton{
+	background-image: url("../icon_delete.png");
+	background-repeat:no-repeat;
+	width: 30px;
+	height: 30px;
+	margin-left: auto;
+}
+/* 這裡是上面的地方 */
+.booktop{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.booktopflex{
+	display: flex;
+	margin-top: 35px;
+	
+	flex-wrap: wrap;
+	
+}
+
+.booktoptext{
+	margin-left: 20px;
+}
+/* 這裡是您好 */
+.bookhello{
+	color: #666666;
+	margin-top: 46px;
+	font-size: 19px;
+	font-weight: bold;
+}
+.booktitle{
+	color: #448899;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.bookdate{
+	margin-top: 30px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.bookDate{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+
+.booktime{
+	margin-top: 30px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.bookTime{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+
+.bookfee{
+	margin-top: 20px;
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+}
+
+.bookFee{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+.booklocation{
+	margin-top: 20px;
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+}
+
+.bookLocation{
+	font-size: 16px;
+	color: #666666;
+	font-weight: normal;
+}
+
+/* 這裡是中間的地方 */
+.bookcenter{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 44px;
+}
+
+.bookcontact{
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+
+}
+
+.contactnameform{
+	margin-top: 31px;
+}
+
+.booknameinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.contactemailform{
+	margin-top: 30px;
+}
+
+.bookemailinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+.contactphoneform{
+	margin-top: 20px;
+}
+
+.bookphoneinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.contacttext{
+	font-weight: bold;
+	color: #666666;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-bottom: 45px;
+}
+
+/* 這裡是下面的地方 */
+.bookbottom{
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 44px;
+	
+}
+
+.crad{
+	font-size: 16px;
+	color: #666666;
+	font-weight: bold;
+}
+.cardnumberform{
+	margin-top: 24px;
+}
+.cardnumberinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.expiretimeform{
+	margin-top: 15px;
+}
+
+.expiretimeinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.checkpasswordform{
+	margin-top: 15px;
+}
+
+.checkpasswordinput{
+	width: 200px;
+	height: 38px;
+	border-radius:5px;
+}
+
+.bookunder{
+	max-width: 1200px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.bottomflex{
+	margin-left: auto;
+	margin-top: 35px;
+}
+
+.totalfee{
+	color: #666666;
+	font-weight: bold;
+}
+
+.feebutton{
+	background: #448899;
+	width: 173px;
+	height: 36px;
+	margin-top: 35px;
+	margin-bottom: 62px;
+}
+.checkfee{
+	color: #FFFFFF;
+	font-size: 19px;
+}
+
+/* 圖片的設定 */
+.bookPic{
+	height: 406px;
+    z-index: 0;
+}
+
+/* 中間的線 */
+.linecenter{
+	max-width: 1200px;
+}
+
+/* 最下面的水平線 */
+.linebottom{
+	max-width: 1200px;
+}
+
+
+.coryrighttwo{
+	background: #757575;
+	width: 100%;
+	height: 865px;
+	display:flex;
+	justify-content: center;
+	display: none;
+	
+}
+
+.contentPbox{
+	
+	margin-top: 45px;
+}
+
+.coryrightPtwo{
+	margin-left: 37%;
+	margin-top: 45px;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+
+/* 沒有預定行程的文字 */
+.noordertext{
+	margin-top: 35px;
+	display: none;
+}
+
+
+/* 這裡是下方信用卡資訊 */
+.tpfield {
+	height: 40px;
+	width: 300px;
+	border: 1px solid gray;
+	margin: 5px 0;
+	padding: 5px;
+}
+
+.payflex{
+	display: flex;
+	margin-top: 20px;
+}
+/* 為了讓您可以對 TapPay Fields 的 focus state 進行 style, 我們會在 field focus 的時候，把 tappay field container 加上 tappay-field-focus 這個 class，您可以對此 class 撰寫 css */
+.tappay-field-focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}

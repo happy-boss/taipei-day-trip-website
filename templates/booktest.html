@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<head>
+<head></head>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/attraction.css">
     <link rel="stylesheet" type="text/css" href="../static/css/book.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-</head>    
 <body>
     <!-- 最上面的東西 -->
     <nav>
         <div class="top">
-            <h1 class="taipeitrip">台北一日遊</h1>
+            <h1>台北一日遊</h1>
             <div class="rightpart">
-                    <div class="schedule">預定行程</div>
-                    <div class="user">登入/註冊</div>               
-            </div>
-            <div class="logout">
-                <div class="welcomeUser"></div>
-                <div class="logoutbtn">登出</div>
+                <div class="schedule">預定行程</div>
+                <div class="user">登入/註冊</div>
             </div>
         </div>
-    </nav>
-    <hr>  
+        <!-- <hr> -->
+    </nav> 
+    <hr>
+    <!-- 這裡要搞登入登出的東西 -->
     <section>
         <!-- 這裡放登入畫面 -->
         <div class="signBox">
@@ -35,7 +31,7 @@
                 <input type="password" placeholder="輸入密碼" name="password" class="inputEmail" id="signpassword"   required><br>
                 <button class="signAccount">登入帳戶</button>
             </form>
-            <div class="erollbuttonText">還沒有帳號?點此註冊</div>
+            <div class="buttonText">還沒有帳號?點此註冊</div>
             <p id="signok"></p>
         </div>
         <div class="erollBox">
@@ -59,22 +55,20 @@
     </section>
     <!-- 這裡搞一個上面有圖片的部分 -->
     <div class="booktop">
-        <div class="bookhello">您好，<span class="customer"></span>，待預訂的行程如下：</div>
+        <div class="bookhello">您好，<span>宏瑋大哥</span>，待預訂的行程如下：</div>
         <!-- 這裡是圖片跟旁邊的文字 我想用flex -->
         <div class="booktopflex">
             <div class="bookpic">
-                <!-- <img src="../static/welcome.png"> -->
+                <img src="../static/welcome.png">
             </div>
             <div class="booktoptext">
-                <div class="booktitle">台北一日遊：<span id="booktextname"></span></div>
-                <div class="bookdate">日期：<span class="bookDate"></span></div>
-                <div class="booktime">時間：<span class="bookTime"></span></div>
-                <div class="bookfee">費用：<span class="bookFee"></span></div>
-                <div class="booklocation">地點：<span class="bookLocation"></span></div>
+                <div class="booktitle">台北一日遊：<span>平安鐘</span></div>
+                <div class="bookdate">日期：<span class="bookDate">2021-04-23</span></div>
+                <div class="bookfee">費用：<span class="bookFee">新台幣 2000 元</span></div>
+                <div class="booklocation">地點：<span class="bookLocation">臺北市 大安區忠孝東路4段</span></div>
             </div>
             <img  class="deletebutton">
         </div>
-        <p class="noordertext">目前沒有預定的行程</p>
     </div>
     <hr class="line">
     <!-- 這裡是中間文字的部分 -->
@@ -94,55 +88,62 @@
         </form>
         <div class="contacttext">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
     </div>
-    <hr class="linecenter">
+    <hr class="line">
     <!-- 這裡是下方的部分 -->
     <div class="bookbottom">
         <div class="crad">信用卡付款資訊</div>
-        <div class="payflex">
-            <span>卡片號碼：</span><div class="tpfield" id="card-number"></div>
-        </div>
-        <div class="payflex">
-            <span>過期時間：</span><div class="tpfield" id="card-expiration-date"></div>
-        </div>
-        <div class="payflex">
-            <span>驗證密碼：</span><div class="tpfield" id="card-ccv"></div>    
-        </div>
+        <form class="cardnumberform">
+            <span>卡片號碼：</span>
+            <input name="species" type="text"  placeholder="**** **** **** ****" class="cardnumberinput">
+        </form>
+        <form class="expiretimeform">
+            <span>過期時間：</span>
+            <input name="species" type="text" class="expiretimeinput">
+        </form>
+        <form class="checkpasswordform">
+            <span>驗證密碼：</span>
+            <input name="species" type="text" class="checkpasswordinput">
+        </form>
     </div>
-    <hr class="linebottom">
-    <!-- 這裡放下方總共金額 -->
+    <hr class="line">
     <!-- 這裡放下方總共金額 -->
     <div class="bookunder">
         <div></div>
         <div></div>
-        <div class="bottomflex" id="cardview-container">
-            <div class="totalfee">總價：<span class="spotbookfee"></span></div>
-            <button class="feebutton" id="submit-button">
+        <div class="bottomflex">
+            <div class="totalfee">總價：<span>新台幣 2000 元</span></div>
+            <button class="feebutton">
                 <div class="checkfee">確認訂購並付款</div>
             </button>
-            <p class="errorpay"></p>
-        </div>
-        
+        </div>    
     </div>
 
     <!-- 最下面的東西 -->
     <footer class="coryright">     
         <p class="coryrightP">COPYRIGHT © 2021 台北一日遊</p>
-    </footer>
-    <footer class="coryrighttwo">
-        <div class="contentPbox"></div>    
-        <p class="coryrightPtwo">COPYRIGHT © 2021 台北一日遊</p>
-        
     </footer> 
-    <!-- 這裡做tappay的實驗
-    <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script> -->
-    <!-- js的順序很重要 要知道哪個頁面呼叫api的順序!!不然會壞掉 -->
-    <script src="../static/js/login.js"></script>
-    <script src="../static/js/book.js"></script>
-    <!-- 這裡做tappay的實驗 -->
-    <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script>
-    <script src="../static/js/pay.js"></script>
-
-   
-    
+    <footer class="coryrighttwo"> 
+        <div>   
+            <p class="coryrightPtwo">COPYRIGHT © 2021 台北一日遊</p>
+        </div> 
+    </footer> 
 </body>
 </html>
+
+
+<!-- <form class="cardnumberform">
+            <span>卡片號碼：</span>
+            <input name="number"  class="tpfield" id="card-number">
+        </form>
+        <form class="expiretimeform">
+            <span>過期時間：</span>
+            <input name="expiretime"  class="tpfield" id="card-expiration-date">
+        </form>
+        <form class="checkpasswordform">
+            <span>驗證密碼：</span>
+            <input name="checkpassword"  class="tpfield" id="card-ccv">
+        </form> -->
+        <!-- 拿掉看看 -->
+        <!-- placeholder="**** **** **** ****"
+        placeholder="MM / YY"
+        placeholder="CVV" -->

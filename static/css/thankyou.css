@@ -1,0 +1,89 @@
+/* 這裡放圖片的設定 */
+.orderPicbox{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+
+.sucessBox{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 20px;
+    background: #E8E8E8;
+    height: 80px;
+}
+
+.tksText{
+    max-width: 600px;
+    width: 450px;
+    background: #E8E8E8;
+    margin-top: 20px;
+}
+.tksSpot{
+    margin-top: 20px;
+    margin: 20px;
+
+    font-size: 16px;
+}
+
+.tksDate{
+    margin: 20px;
+    font-size: 16px;
+}
+.tksTime{
+    margin: 20px;
+    font-size: 16px;
+}
+
+.tksNumber{
+    margin: 20px;
+    font-size: 16px;
+}
+
+.tksLine{
+    max-width: 1200px;
+}
+
+.lastBox{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.tksUser{
+    margin: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color:dimgrey;
+}
+
+.tkstrip{
+    margin: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color:dimgrey;
+}
+
+.tksFeebox{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tksMoney{
+    margin: 30px;
+    font-size: 28px;
+}
+/* 圖片的css */
+.tripPic{
+    width: 100%;
+}

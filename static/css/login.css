@@ -1,0 +1,153 @@
+.signBox{
+    max-width:340px ;
+    display: none;
+    z-index: 3;
+    position: absolute;
+    margin-left: 40%;
+    margin-top:10px;
+    border: 1px solid black;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+/* 登入畫面上面綠綠的那塊 */
+.decorator_bar{
+    max-width: 340px;
+    height: 10px;
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border-radius: 10px;
+
+}
+.loginBox{
+    display: flex;
+    justify-content: center;
+    width: 310px;
+    margin: 10px;
+    position: relative;
+}
+.sign_inText{
+    font-size: 27PX;
+    font-weight: bold;
+    color: #666666;
+    margin-left: auto;
+}
+.X_mark{
+    background-image: url(../icon_close.png);
+    background-repeat:no-repeat;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    margin-left: auto;
+}
+
+.inputEmail{
+    width: 310px;
+    margin: 10px;
+    height: 40px;
+}
+
+.signAccount{
+    width: 310px;
+    height: 47px;
+    margin: 10px;
+}
+
+.buttonEroll{
+    margin: 10px;
+    margin-left: 30%;
+    
+}
+
+
+
+.erollBox{
+    max-width:340px ;
+    display: none;
+    z-index: 3;
+    position: absolute;
+    margin-left: 40%;
+    margin-top:10px;
+    border: 1px solid black;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.eroll{
+    width: 310px;
+    margin: 15px;
+    display: flex;
+}
+
+.erollText{
+    margin-left: auto;
+}
+
+
+.X_marksec{
+    background-image: url(../icon_close.png);
+    background-repeat:no-repeat;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    margin-left: auto;
+}
+
+/* .haveAccount{
+    margin: 10px;
+    margin-left: 23%;
+} */
+
+.erollbuttonText{
+    margin-left: 26%;
+}
+
+.haveAccount{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.erollAccount{
+    width: 310px;
+    height: 47px;
+    margin: 10px;
+}
+
+p{
+    color: black;
+}
+
+
+/* 登出的css */
+.logout{
+	display: flex;
+    align-items: center;
+    display: none;
+}
+
+.welcomeUser{
+	font-size: 16px;
+	line-height: 13px;
+	color: #666666;
+	margin: 20px;
+	margin-right: 10px;;
+}
+
+
+.logoutbtn{
+	font-size: 16px;
+	line-height: 13px;
+	color: #666666;
+	margin-right: 10px;;
+}
+
+
+/* 這是book的footer */
+.coryright{
+    background: #757575;
+	width: 100%;
+	/* height:auto; */
+	display: flex;
+	
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+}

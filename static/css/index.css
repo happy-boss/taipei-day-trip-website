@@ -1,0 +1,265 @@
+
+
+.top{
+	display: flex;
+	height: 54px;
+	background: #FFFFFF;
+	justify-content:space-between; 
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	/* border: 1px black solid; */
+}
+h1{
+	font-size: 30px;
+	line-height: 34px;
+	color: #448899;
+	margin: 10px;
+	margin-left: 0px;
+}
+.rightpart{
+	display: flex;
+	
+}
+
+.schedule{
+	display: flex;
+	font-size: 16px;
+	line-height: 13px;
+	color: #666666;
+	flex: none;
+	margin: 20px;
+	margin-right: 10px;
+}
+.user{
+	display: flex;
+	font-size: 16px;
+	line-height: 13px;
+	color: #666666;
+	margin: 20px;
+	margin-left: 10px;
+}
+body{
+	margin: 0px;
+}
+
+/* 這裡是第二層 */
+
+ .loge{
+	/* display: flex; */
+	height: 320px;
+	/* background: linear-gradient(135deg, #737a7c 0%, #66AABB 100%);
+	background: #448899; */
+	background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+
+	
+	/* justify-content: center; */
+	/* margin-left: auto;
+	margin-right: auto; */
+}
+.logomax1200{
+	/* display: flex;
+	justify-content:flex-start; */
+	/* width: 1200px; */
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	/* border: 1px black solid; */
+	z-index: 0;
+}
+
+.relax{
+	font-size: 28px;
+	height: 41px;
+	color:#F8F8F8;
+	/* margin-top: 85px; */
+	position: absolute;
+	top: 139px;;
+}
+
+.city{
+	font-size: 16px;
+	line-height: 24px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #F8F8F8;
+	position: absolute;
+	top: 195px;
+
+}
+.searchBox{
+	position: absolute; 
+	top: 242px;
+	display: flex;
+}
+
+.searchKeyword{
+	width: 60px;
+	height: 52px;
+	background: #448899;
+
+
+}
+/* button{
+	width: 23px;
+	height: 23px;
+	
+} */
+.inputBox{
+	width: 400px;
+	height: 46px;
+	/* position: absolute;
+	top: 242px; */
+}
+
+
+
+/* button{
+	width: 60px;
+	height: 52px; */
+	/* position: absolute;
+	top: 242px;
+	left:768px; */
+/* } */
+.search{
+	/* background-image:url('./static/search.png'); */
+	width: 100%;
+	height: 100%;
+	
+}
+.centerPicture{
+	position: absolute;
+	left:52%;
+	/* margin-right:-120px ; */
+}
+
+
+
+.bigbox{
+	display: flex;
+	justify-content: space-around;
+	max-width: 1200px;
+	flex-wrap:wrap;
+	/* border:1px black solid; */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 55px;
+
+}
+.box{
+	width: 23%;
+	margin-bottom: 30px;
+	border: 1px black solid;
+	
+}
+
+.picture{
+	width:100%;
+	/* height: 74%; */
+	height: 202px;
+	object-fit:cover;
+}
+
+
+
+.name{
+	
+	color: #757575;
+	font-size: 16px;
+	line-height: 13px;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+.mrt{
+	
+	color: #757575;
+	font-size: 16px;
+	line-height: 13px;
+}
+.textBox{
+	display: flex;
+	justify-content: space-between;
+	margin-right: 10px;
+	margin-left: 10px;
+	align-items: flex-end;
+	margin-bottom: 12px;
+}
+.category{
+	color: #757575;
+	font-size: 16px;
+	line-height: 13px;
+
+}
+
+footer{
+	background: #757575;
+	width: 100%;
+	height: 104px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* margin-left: auto;
+	margin-right: auto; */
+}
+
+.coryrightP{
+	font-size: 16px;
+	color: #FFFFFF;
+	/* margin-left:37%; */
+}
+
+
+
+
+
+
+
+
+@media(max-width: 1200px) {
+	/* 裝三百多張的盒子 */
+	.box{
+		width: 45%;
+	}
+	/* 不要加;絕對不要!! */
+	.centerPicture{
+		left: 34%;
+		z-index: 1;
+	}
+	
+	.text{
+		z-index: 2;
+	}
+
+	.searchBox{
+		z-index: 2;
+	}
+
+	
+	footer{
+		width: auto;
+	}
+	p{
+		margin-left: 26%;
+	}
+}
+
+@media (max-width: 600px) {
+	.box{
+		width: 90%;
+	}
+	
+	.centerPicture{
+		position: absolute;
+		left:200px;
+		z-index: -1;
+	}
+	
+	/* 搜尋地方我想把中正紀念堂蓋掉 */
+	.text{
+		z-index: 0;
+	}
+
+}	
+
